@@ -1,4 +1,11 @@
-:root {
+@import 'tailwindcss';
+html,
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -39,4 +46,4 @@ a {
   html {
     color-scheme: dark;
   }
-}
+} */
