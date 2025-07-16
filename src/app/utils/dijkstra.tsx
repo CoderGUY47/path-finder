@@ -36,10 +36,16 @@ class PriorityQueue {
   }
 }
 
-export function dijkstra(graph: Graph, start: NodeId, end: NodeId): NodeId[] {
+export function dijkstra(
+  graph: Graph,
+  start: NodeId,
+  end: NodeId,
+  returnVisited = false
+): { path: NodeId[]; visited: NodeId[] } {
   const distances: Record<NodeId, number> = {};
   const previous: Record<NodeId, NodeId | null> = {};
   const queue = new PriorityQueue();
+  const visited: NodeId[] = [];
 
   for (const node in graph) {
     if (node === start) {
@@ -56,6 +62,10 @@ export function dijkstra(graph: Graph, start: NodeId, end: NodeId): NodeId[] {
     const smallest = queue.dequeue();
     if (!smallest) break;
 
+    if (returnVisited) {
+      visited.push(smallest);
+    }
+
     if (smallest === end) {
       // Build path
       const path: NodeId[] = [];
@@ -64,8 +74,8 @@ export function dijkstra(graph: Graph, start: NodeId, end: NodeId): NodeId[] {
         path.unshift(curr);
         curr = previous[curr];
       }
-      if (path[0] !== start) return [];
-      return path;
+      if (path[0] !== start) return { path: [], visited };
+      return { path, visited };
     }
 
     if (distances[smallest] === Infinity) continue;
@@ -80,5 +90,5 @@ export function dijkstra(graph: Graph, start: NodeId, end: NodeId): NodeId[] {
     }
   }
 
-  return [];
+  return { path: [], visited };
 }
