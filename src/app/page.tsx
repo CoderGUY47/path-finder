@@ -78,7 +78,7 @@ const getNodeMarker = (label: string, type: "normal" | "start" | "end" | "visite
 
 export default function Page() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "AIzaSyAWeTMIeG1waEqlo5JHWZu_fAKLpWr-qM8",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
     libraries: ["geometry"],
   });
 
